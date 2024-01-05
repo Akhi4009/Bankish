@@ -31,3 +31,26 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click',function(e){
+  const s1coord = section1.getBoundingClientRect();
+  // console.log(s1coord)
+  // console.log('Current scroll(X/Y)',window.pageXOffset,
+  // window.pageYOffset);
+  
+  // scrolling
+  // window.scrollTo(
+  //   {
+  //     left:s1coord.left + window.pageXOffset,
+  //     top:s1coord.top + window.pageYOffset,
+  //     behavior:"smooth",
+  //   }
+  // )
+  section1.scrollIntoView({behavior:'smooth'});
+})
+
+
