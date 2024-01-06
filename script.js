@@ -6,6 +6,9 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content')
 
 
 ///////////////////////////////////////
@@ -90,9 +93,7 @@ document.querySelector('.nav__links').addEventListener(
 
 // Tab component
 
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content')
+
 // console.log(tabs);
 //  console.log(tabsContainer);
 // console.log(tabContent);
@@ -109,7 +110,26 @@ tabs.forEach(t=>t.classList.remove('operations__tab--active'));
  tabsContent.forEach(t=>t.classList.remove('operations__content--active'));
 document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
 
-})
+});
+
+// Menu fade animation
+
+const hadleHover = function(e){
+  if(e.target.classList.contains('nav__link')){
+    const link = e.target;
+    const sibling = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+   
+    sibling.forEach(el=>{
+     if(el !== link) el.style.opacity = this;
+    })
+   logo.style.opacity = this;
+   }
+}
+
+const nav = document.querySelector('.nav')
+nav.addEventListener('mouseover', hadleHover.bind(0.5));
+nav.addEventListener('mouseout', hadleHover.bind(1));
 
 
 
