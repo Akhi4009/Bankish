@@ -1,12 +1,17 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+
+///////////////////////////////////////
+// Modal window
+
+
 
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -33,8 +38,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+// Btn scrolling
 
 btnScrollTo.addEventListener('click',function(e){
   const s1coord = section1.getBoundingClientRect();
@@ -52,5 +56,33 @@ btnScrollTo.addEventListener('click',function(e){
   // )
   section1.scrollIntoView({behavior:'smooth'});
 })
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max-min) + min);
+
+const randomColor = ()=>
+  `rgb(${randomInt(0,255)},
+   ${randomInt(0,255)},
+   ${randomInt(0,255)})`;
+  //  console.log(randomColor());
+
+   document.querySelector('.nav__link').addEventListener
+   ('click',function(e){
+   this.style.backgroundColor = randomColor();
+   console.log('Link', e.target);
+   })
+
+   document.querySelector('.nav__links').addEventListener
+   ('click',function(e){
+    this.style.backgroundColor = randomColor();
+    console.log('Container', e.target);
+
+   })
+
+   document.querySelector('.nav').addEventListener
+   ('click',function(e){
+    this.style.backgroundColor = randomColor();
+    console.log('Nav', e.target);
+   })
 
 
