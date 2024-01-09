@@ -163,11 +163,11 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
+// console.log(navHeight);
 
 const stickyNav = function(entries){
 const [entry] = entries;
-console.log(entry)
+// console.log(entry)
 if(entry.isIntersecting){
   nav.classList.remove('sticky');
 }else{
@@ -183,6 +183,28 @@ const headerObserver = new IntersectionObserver(
   }
 );
 headerObserver.observe(header);
+
+
+// Reveal section
+
+const allSection = document.querySelectorAll('.section');
+const revealSEction = function(entries,observer){
+const [entry] = entries;
+ console.log(entry)
+ if(!entry.isIntersecting) return;
+entry.target.classList.remove('section--hidden');
+observer.unobserve(entry.target);
+}
+
+const sectionObserver = new IntersectionObserver(
+revealSEction,{
+  root:null,
+  threshold:0.15,
+});
+allSection.forEach(function(section){
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+})
 
 
 
